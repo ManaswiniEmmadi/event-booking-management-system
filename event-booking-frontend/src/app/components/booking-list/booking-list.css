@@ -1,0 +1,44 @@
+.booking-container {
+  padding: 20px;
+}
+
+.filter-section {
+  margin-bottom: 16px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.filter-section label {
+  font-weight: bold;
+}
+
+.filter-section input,
+.filter-section select {
+  padding: 4px 8px;
+}
+
+.booking-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.booking-table th,
+.booking-table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: center;
+}
+
+.loading {
+  color: blue;
+}
+
+.error {
+  color: red;
+}
+
+.empty {
+  margin-top: 10px;
+  color: gray;
+}

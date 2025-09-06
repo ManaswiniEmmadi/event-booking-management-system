@@ -1,0 +1,50 @@
+<div class="container mt-5">
+  <h2 class="mb-4 text-center">Add Seats</h2>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="needs-validation" novalidate>
+    
+    <!-- Event Name -->
+    <div class="mb-3">
+      <label for="eventName" class="form-label">Event Name</label>
+      <input type="text" id="eventName" class="form-control" formControlName="eventName" placeholder="Enter Event Name" readonly>
+    </div>
+
+    <!-- Seat Type -->
+    <div class="mb-3">
+      <label for="seatType" class="form-label">Seat Type</label>
+      <select id="seatType" class="form-select" formControlName="seatType">
+        <option value="" disabled>Select Seat Type</option>
+        <option *ngFor="let type of seatTypes" [value]="type">{{ type }}</option>
+      </select>
+    </div>
+
+    <!-- Price -->
+    <div class="mb-3">
+      <label for="price" class="form-label">Price</label>
+      <input type="number" id="price" class="form-control" formControlName="price" placeholder="Enter Price">
+    </div>
+
+    <!-- Total Seats -->
+    <div class="mb-3">
+      <label for="totalSeats" class="form-label">Total Seats</label>
+      <input type="number" id="totalSeats" class="form-control" formControlName="totalSeats" placeholder="Enter Total Seats">
+    </div>
+
+    <!-- Available Seats -->
+    <div class="mb-3">
+      <label for="availableseats" class="form-label">Available Seats</label>
+      <input type="number" id="availableseats" class="form-control" formControlName="availableseats" placeholder="Enter Available Seats">
+    </div>
+
+    <button type="submit" class="btn btn-primary w-100">Save</button>
+  </form>
+
+  <!-- Success & Error Messages OUTSIDE the form -->
+  <div *ngIf="successMessage" class="alert alert-success mt-3" role="alert">
+    {{ successMessage }}
+    <button class="btn btn-secondary btn-sm mt-2" routerLink="/myevents">Back to My Events</button>
+  </div>
+  <div *ngIf="errorMessage" class="alert alert-danger mt-3" role="alert">
+    {{ errorMessage }}
+  </div>
+</div>

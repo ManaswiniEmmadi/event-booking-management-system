@@ -1,0 +1,24 @@
+@if (isLoading) {
+<div >Loading events...</div>
+}
+@if (errorMessage) {
+<div class="error">{{ errorMessage }}</div>
+}
+
+<div class="events-container">
+@for (event of events; track event.eventId){
+<div class="event-card" [ngClass]="event.status.toLowerCase()">
+  <h2>{{ event.eventName }}</h2>
+  <p><strong>Date:</strong> {{ event.eventDate }}</p>
+  <p><strong>Location:</strong> {{ event.location }}</p>
+  <p><strong>Capacity:</strong> {{ event.capacity }}</p>
+  <p><strong>Description:</strong> {{ event.description }}</p>
+  <p><strong>Status:</strong> {{ event.status }}</p>
+  <p><strong>Organizer:</strong> {{ event.organizerName }}</p>
+
+  @if (authservice.getRole() === 'USER') {
+    <button class="btn btn-secondary mt-3" routerLink="/seats">View Seats Information</button>
+  }
+</div>
+}
+</div>

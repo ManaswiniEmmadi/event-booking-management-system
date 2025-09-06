@@ -1,0 +1,92 @@
+.container {
+  max-width: 700px;
+  margin: 40px auto;
+  font-family: "Segoe UI", Roboto, sans-serif;
+  color: #333;
+}
+
+h2 {
+  font-weight: 600;
+  color: #ff7b00;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+form {
+  background: #fff;
+  padding: 25px 20px;
+  border-radius: 8px;
+  box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.06);
+}
+
+form label {
+  font-weight: 500;
+  display: block;
+  margin-top: 12px;
+}
+
+form input,
+form select {
+  width: 100%;
+  padding: 8px 10px;
+  margin-top: 5px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+form input:focus,
+form select:focus {
+  border-color: #ff7b00;
+  box-shadow: 0 0 0 0.15rem rgba(255, 123, 0, 0.25);
+  outline: none;
+}
+
+form button[type="submit"] {
+  margin-top: 20px;
+  padding: 10px 0;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 5px;
+  border: none;
+  background-color: #ff7b00;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+form button[type="submit"]:hover {
+  background-color: #e56f00;
+}
+
+.alert {
+  padding: 12px 15px;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+.alert-success {
+  background-color: #e6f4ea;
+  color: #2f7a33;
+}
+
+.alert-danger {
+  background-color: #fdecea;
+  color: #a71d2a;
+}
+
+.alert button {
+  margin-top: 10px;
+  padding: 5px 10px;
+  font-size: 0.85rem;
+  background-color: #ff7b00;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.alert button:hover {
+  background-color: #e56f00;
+}

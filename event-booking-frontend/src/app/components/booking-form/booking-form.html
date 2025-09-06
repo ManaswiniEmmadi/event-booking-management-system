@@ -1,0 +1,78 @@
+<div class="container vh-100 d-flex justify-content-center align-items-start py-5">
+  <div class="card shadow-lg p-4" style="max-width: 500px; width: 100%;">
+    <h2 class="text-center mb-4 text-primary">Event Booking Form</h2>
+
+    <form [formGroup]="bookingForm" (ngSubmit)="onSubmit()">
+
+      <!-- User Name -->
+      <div class="mb-3">
+        <label for="userName" class="form-label">Name:</label>
+        <input id="userName" formControlName="userName" type="text" class="form-control" />
+        <div *ngIf="bookingForm.get('userName')?.invalid && bookingForm.get('userName')?.touched" class="text-danger small">
+          Name is required.
+        </div>
+      </div>
+
+      <!-- Mobile -->
+      <div class="mb-3">
+        <label for="mobile" class="form-label">Mobile:</label>
+        <input id="mobile" formControlName="mobile" type="text" class="form-control" />
+        <div *ngIf="bookingForm.get('mobile')?.invalid && bookingForm.get('mobile')?.touched" class="text-danger small">
+          Enter valid 10-digit mobile.
+        </div>
+      </div>
+
+      <!-- Email -->
+      <div class="mb-3">
+        <label for="email" class="form-label">Email:</label>
+        <input id="email" formControlName="email" type="email" class="form-control" />
+        <div *ngIf="bookingForm.get('email')?.invalid && bookingForm.get('email')?.touched" class="text-danger small">
+          Valid email is required.
+        </div>
+      </div>
+
+      <!-- Seat Type -->
+      <div class="mb-3">
+        <label class="form-label">Seat Type:</label>
+        <input type="text" class="form-control" [value]="seatTypeName" readonly />
+      </div>
+
+      <!-- Event Name -->
+      <div class="mb-3">
+        <label for="eventName" class="form-label">Event Name:</label>
+        <input id="eventName" type="text" class="form-control" formControlName="eventName" readonly />
+      </div>
+
+      <!-- Number of Seats -->
+      <div class="mb-3">
+        <label for="numberOfSeats" class="form-label">Number of Seats:</label>
+        <input id="numberOfSeats" type="number" formControlName="numberOfSeats" class="form-control" />
+        <div *ngIf="bookingForm.get('numberOfSeats')?.invalid && bookingForm.get('numberOfSeats')?.touched" class="text-danger small">
+          Enter a valid number (1-{{ availableSeats }}).
+        </div>
+      </div>
+
+
+      <!-- Event ID (Hidden) -->
+      <input type="hidden" formControlName="eventId" />
+
+      <!-- Status (Hidden) -->
+      <input type="hidden" formControlName="status" />
+
+      <!-- Submit -->
+<button type="submit" class="btn btn-primary w-100" [disabled]="bookingForm.invalid">Book Now</button>
+
+<!-- Go to Payment Button -->
+<button
+  type="button"
+  class="btn btn-success w-100 mt-2"
+  (click)="goToPayment()"
+  [disabled]="!bookingId">
+  Go to Payment
+</button>
+
+<!-- Message -->
+<div class="success text-success mt-3" *ngIf="successMessage">{{ successMessage }}</div>
+    </form>
+  </div>
+</div>

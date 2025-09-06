@@ -1,0 +1,25 @@
+<div class="container mt-5 text-center" *ngIf="!loading && booking; else loadingTpl">
+  <h2>🎉 Payment Successful!</h2>
+  <p>Your booking has been confirmed.</p>
+
+  <div class="card mt-4 text-start p-3 mx-auto" style="max-width: 500px;">
+    <p><strong>Booking ID:</strong> {{ booking.bookingId }}</p>
+    <p><strong>Name:</strong> {{ booking.userName }}</p>
+    <p><strong>Email:</strong> {{ booking.email }}</p>
+    <p><strong>Mobile:</strong> {{ booking.mobile }}</p>
+    <p><strong>Event ID:</strong> {{ booking.eventId }}</p>
+    <p><strong>Seat Type:</strong> {{ booking.seatType }}</p>
+    <p><strong>Number of Seats:</strong> {{ booking.numberOfSeats }}</p>
+    <p><strong>Status:</strong> {{ booking.status }}</p>
+  </div>
+
+  <div class="text-center mt-3">
+      <button class="btn btn-success" (click)="downloadInvoice()">Download Ticket</button>
+  </div>
+
+  <a routerLink="/user-dashboard" class="btn btn-primary mt-3">Go to Dashboard</a>
+</div>
+
+<ng-template #loadingTpl>
+  <p class="mt-5">Loading booking details...</p>
+</ng-template>

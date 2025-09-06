@@ -1,0 +1,39 @@
+<div class="auth-container">
+  <div class="card shadow-lg p-4 auth-card">
+    <h2 class="text-center mb-4">Login</h2>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <!-- Email -->
+      <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input class="form-control" formControlName="email" type="email" placeholder="Enter your email" />
+        <div *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.invalid" class="text-danger small mt-1">
+          <small *ngIf="loginForm.get('email')?.errors?.['required']">Email is required.</small>
+          <small *ngIf="loginForm.get('email')?.errors?.['email']">Enter a valid email.</small>
+        </div>
+      </div>
+
+      <!-- Password -->
+      <div class="mb-3">
+        <label class="form-label">Password</label>
+        <input class="form-control" formControlName="password" type="password" placeholder="Enter your password" />
+        <div *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid" class="text-danger small mt-1">
+          <small>Password is required.</small>
+        </div>
+      </div>
+
+      <!-- Error Message -->
+      <div *ngIf="errorMessage" class="alert alert-danger py-2">{{ errorMessage }}</div>
+
+      <div class="d-grid">
+        <button type="submit" class="btn btn-primary">Login</button>
+      </div>
+    </form>
+
+    <!-- Signup Link -->
+    <p class="text-center mt-3 mb-0">
+      Don't have an account? 
+      <a routerLink="/signup" class="link-primary">Create Account</a>
+    </p>
+  </div>
+</div>

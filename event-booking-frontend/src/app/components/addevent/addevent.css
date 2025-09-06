@@ -1,0 +1,59 @@
+/* Page background */
+.event-form-wrapper {
+  background-color: #f9fafb;
+  min-height: 100vh;
+  padding: 30px 15px;
+}
+
+/* Card Styling */
+.event-card {
+  max-width: 900px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.06);
+  border: none;
+  background-color: #fff;
+}
+
+/* Title Styling */
+.card-title {
+  font-weight: 600;
+  border-bottom: 2px solid #f1f1f1;
+  padding-bottom: 0.5rem;
+  color: #ff7b00;
+  letter-spacing: 0.5px;
+}
+
+/* Input focus highlight */
+.form-control:focus {
+  border-color: #ff7b00;
+  box-shadow: 0 0 0 0.2rem rgba(255, 123, 0, 0.25);
+}
+
+/* Label styling */
+.form-label {
+  font-weight: 500;
+}
+
+/* Error messages */
+.text-danger.small {
+  font-size: 0.8rem;
+}
+
+/* Primary button styling */
+.btn-primary {
+  background-color: #ff7b00;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: #e56f00;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(229, 111, 0, 0.3);
+}
+
+.btn-primary:disabled {
+  background-color: #ffc68a;
+  border: none;
+  cursor: not-allowed;
+}

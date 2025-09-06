@@ -1,0 +1,74 @@
+<div class="payment-container">
+    <!-- Payment Success State -->
+    <div *ngIf="paymentSuccessful" class="success-section">
+        <div class="success-icon">✅</div>
+        <h2>Payment Successful!</h2>
+
+        <!-- Use ng-container instead of nested *ngIf -->
+        <ng-container *ngIf="currentPayment">
+            <div class="payment-details">
+                <p><strong>Transaction ID:</strong> {{ currentPayment.transactionId }}</p>
+                <p><strong>Amount:</strong> ${{ currentPayment.amount }}</p>
+                <p><strong>Payment Method:</strong> {{ currentPayment.paymentMethod }}</p>
+                <p><strong>Status:</strong> {{ currentPayment.paymentStatus }}</p>
+            </div>
+        </ng-container>
+
+        <div class="action-buttons">
+            <button class="download-btn" (click)="downloadInvoice()">
+                📄 Download Invoice
+            </button>
+            <button class="reset-btn" (click)="resetForm()">
+                🔄 Make Another Payment
+            </button>
+            <button class="confirm-btn" (click)="goToBookingConfirmation()">
+                🛎 View Booking Confirmation
+            </button>
+        </div>
+    </div>
+
+
+    <!-- Payment Form -->
+    <div *ngIf="!paymentSuccessful">
+        <h2>Choose Payment Method</h2>
+
+        <div class="payment-methods">
+            <label>
+                <input type="radio" name="method" value="card" [(ngModel)]="selectedMethod"> Card
+            </label>
+            <label>
+                <input type="radio" name="method" value="upi" [(ngModel)]="selectedMethod"> UPI
+            </label>
+            <label>
+                <input type="radio" name="method" value="netbanking" [(ngModel)]="selectedMethod"> Net Banking
+            </label>
+        </div>
+
+        <div *ngIf="selectedMethod === 'card'" class="form-section">
+            <h3>Card Payment</h3>
+            <input type="text" placeholder="Card Number" [(ngModel)]="cardNumber">
+            <input type="text" placeholder="Expiry (MM/YY)" [(ngModel)]="cardExpiry">
+            <input type="password" placeholder="CVV" [(ngModel)]="cvv">
+            <button (click)="payWithCard()" [disabled]="loading">
+                {{ loading ? 'Processing...' : 'Pay Now' }}
+            </button>
+        </div>
+
+        <div *ngIf="selectedMethod === 'upi'" class="form-section">
+            <h3>UPI Payment</h3>
+            <input type="text" placeholder="Enter UPI ID" [(ngModel)]="upiId">
+            <button (click)="payWithUpi()" [disabled]="loading">
+                {{ loading ? 'Processing...' : 'Pay Now' }}
+            </button>
+        </div>
+
+        <div *ngIf="selectedMethod === 'netbanking'" class="form-section">
+            <h3>Net Banking</h3>
+            <input type="text" placeholder="Enter Bank Name" [(ngModel)]="bankName">
+            <button (click)="payWithNetBanking()" [disabled]="loading">
+                {{ loading ? 'Processing...' : 'Pay Now' }}
+            </button>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,30 @@
+<div class="container vh-100 d-flex flex-column align-items-center py-5">
+
+  <div class="d-flex justify-content-end align-items-center mb-3">
+    <span class="me-3 fw-bold text-primary">Hi, {{ username }}</span>
+
+    <button class="btn btn-outline-secondary me-2" [routerLink]="['/bookings']">My Bookings</button>
+    <button class="btn btn-outline-primary me-2" [routerLink]="['/profile']">Profile</button>
+    <button class="btn btn-outline-danger" (click)="logout()">Logout</button>
+  </div>
+
+  <div class="card shadow-lg p-4" style="max-width: 900px; width: 100%;">
+    <h4 class="mb-4 text-center">Events</h4>
+
+    <div *ngIf="loading" class="text-center">Loading events...</div>
+    <div *ngIf="error" class="text-danger text-center">{{ error }}</div>
+
+    <div *ngIf="!loading && !error">
+      <div *ngFor="let event of events" class="border p-3 mb-3 rounded">
+        <h2>{{ event.eventName }}</h2>
+        <p><strong>Date:</strong> {{ event.eventDate }}</p>
+        <p><strong>Location:</strong> {{ event.location }}</p>
+        <p><strong>Capacity:</strong> {{ event.capacity }}</p>
+        <p><strong>Description:</strong> {{ event.description }}</p>
+        <p><strong>Status:</strong> {{ event.status }}</p>
+        <p><strong>Organizer:</strong> {{ event.organizerName }}</p>
+        <button class="btn btn-primary" (click)="viewSeats(event.eventId)">View Seats Information</button>
+      </div>
+    </div>
+  </div>
+</div>

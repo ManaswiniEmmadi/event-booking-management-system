@@ -1,0 +1,74 @@
+<div class="container">
+  <h2>My Events</h2>
+
+  <!-- Loading & Error -->
+  <div *ngIf="isLoading">Loading events...</div>
+  <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+
+  <!-- Events Table (shown when no event is selected for update) -->
+  <table *ngIf="!isLoading && myEvents.length > 0 && !selectedEvent" class="event-table">
+    <thead>
+      <tr>
+        <th>Event Name</th>
+        <th>Date</th>
+        <th>Location</th>
+        <th>Capacity</th>
+        <th>Status</th>
+        <th>Description</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let event of myEvents">
+        <td>{{ event.eventName }}</td>
+        <td>{{ event.eventDate | date:'yyyy-MM-dd' }}</td>
+        <td>{{ event.location }}</td>
+        <td>{{ event.capacity }}</td>
+        <td>{{ event.status }}</td>
+        <td>{{ event.description }}</td>
+        <td>
+          <button class="btn-update" (click)="startUpdate(event)">Update</button><br><br>
+          <button class="btn-update" (click)="goToAddSeats(event.eventId)">Add Seats Info</button><br><br>
+          <button class="btn-update" (click)="viewBookings(event.eventId)">View Bookings</button>
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Update Form (shown when an event is selected) -->
+  <div *ngIf="selectedEvent" class="update-form">
+    <h3>Update Event</h3>
+    <form [formGroup]="updateForm" (ngSubmit)="submitUpdate()">
+
+      <label>Event Name</label>
+      <input type="text" formControlName="eventName" />
+
+      <label>Date</label>
+      <input type="date" formControlName="eventDate" />
+
+      <label>Location</label>
+      <input type="text" formControlName="location" />
+
+      <label>Capacity</label>
+      <input type="number" formControlName="capacity" />
+
+      <label>Description</label>
+      <textarea formControlName="description"></textarea>
+
+      <label>Status</label>
+      <select formControlName="status">
+        <option value="UPCOMING">Upcoming</option>
+        <option value="ONGOING">Ongoing</option>
+        <option value="COMPLETED">Completed</option>
+        <option value="CANCELLED">Cancelled</option>
+      </select>
+
+      <div class="form-buttons">
+        <button type="submit" class="btn-update" [disabled]="updateForm.invalid">Update</button>
+        <button type="button" class="btn-cancel" (click)="cancelUpdate()">Cancel</button>
+        <button type="button" class="btn-delete" (click)="deleteEvent()">Delete</button>
+      </div>
+    </form>
+  </div>
+</div>

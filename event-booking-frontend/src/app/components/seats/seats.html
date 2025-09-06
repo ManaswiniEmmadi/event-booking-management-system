@@ -1,0 +1,40 @@
+<div class="container mt-4">
+  <h2 class="text-primary mb-3">Seat Information for {{ eventName }}</h2>
+
+  <!-- Loading/Error messages -->
+  <div *ngIf="loading" class="text-muted">Loading seats...</div>
+  <div *ngIf="errorMessage" class="text-danger">{{ errorMessage }}</div>
+
+  <!-- Seat Table -->
+  <table *ngIf="!loading && seats?.length" class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Seat Type</th>
+        <th>Price</th>
+        <th>Total Seats</th>
+        <th>Available Seats</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let seat of seats">
+        <td>{{ seat.seatType }}</td>
+        <td>₹{{ seat.price }}</td>
+        <td>{{ seat.totalSeats }}</td>
+        <td>{{ seat.availableSeats }}</td>
+        <td>
+          <button class="btn btn-success btn-sm"
+                  [disabled]="seat.availableSeats === 0"
+                  (click)="bookSeat(seat)">
+            Book Now
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- No seats case -->
+  <div *ngIf="!loading && !seats?.length" class="text-muted">
+    No seats available.
+  </div>
+</div>
